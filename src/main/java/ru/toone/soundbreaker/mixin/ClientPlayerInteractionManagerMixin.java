@@ -21,7 +21,7 @@ import ru.toone.soundbreaker.SoundBreakerMod;
 import ru.toone.soundbreaker.config.ModConfig;
 import ru.toone.soundbreaker.screen.SoundCheckScreen;
 
-/** Cancels the normal attack and opens the sound check instead. */
+/** Cancels normal block breaking and opens the sound check instead. */
 @Environment(EnvType.CLIENT)
 @Mixin(ClientPlayerInteractionManager.class)
 public abstract class ClientPlayerInteractionManagerMixin {
@@ -32,30 +32,52 @@ public abstract class ClientPlayerInteractionManagerMixin {
         if (SoundBreakerMod.consumeBreakPermission()) {
             return; // Our own re-issued attack after a successful check.
         }
-        if (!ModConfig.enabled()) {
+        if (soundBreaker$shouldIntercept(pos)) {
+            soundBreaker$openCheck(pos, direction, info);
+        }
+    }
+
+    /**
+     * HOTFIX: holding the attack button calls this every tick instead of
+     * attackBlock. Without this injection the block could be broken with no
+     * sound check at all.
+     */
+    @Inject(method = "updateBlockBreakingProgress", at = @At("HEAD"), cancellable = true)
+    private void soundBreaker$onUpdateBreakingProgress(BlockPos pos, Direction direction,
+                                                       CallbackInfoReturnable<Boolean> info) {
+        // A break that already passed the check is allowed to finish.
+        if (SoundBreakerClient.shouldSuppressAbort()) {
             return;
         }
+        if (soundBreaker$shouldIntercept(pos)) {
+            soundBreaker$openCheck(pos, direction, info);
+        }
+    }
 
+    private boolean soundBreaker$shouldIntercept(BlockPos pos) {
+        if (!ModConfig.enabled()) {
+            return false;
+        }
         MinecraftClient client = MinecraftClient.getInstance();
         ClientWorld world = client.world;
         if (world == null || client.player == null || client.interactionManager == null
                 || client.currentScreen != null) {
-            return;
+            return false;
         }
-
         BlockState state = world.getBlockState(pos);
         if (state.isAir()) {
-            return;
+            return false;
         }
+        return !SoundBreakerClient.isUnlocked(state.getBlock());
+    }
 
+    private void soundBreaker$openCheck(BlockPos pos, Direction direction,
+                                        CallbackInfoReturnable<Boolean> info) {
+        MinecraftClient client = MinecraftClient.getInstance();
+        BlockState state = client.world.getBlockState(pos);
         Block block = state.getBlock();
-        if (SoundBreakerClient.isUnlocked(block)) {
-            return; // Already verified recently - break normally, no pop-up.
-        }
-
         BlockSoundGroup soundGroup = state.getSoundGroup();
         SoundEvent breakSound = soundGroup.getBreakSound();
-
         client.setScreen(new SoundCheckScreen(pos, direction, block, state.getBlock().getName(), breakSound));
         info.setReturnValue(false);
     }
