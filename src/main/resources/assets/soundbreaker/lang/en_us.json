@@ -1,0 +1,20 @@
+{
+  "soundbreaker.title": "Break: %s",
+  "soundbreaker.subtitle": "Imitate the block's sound into your mic",
+  "soundbreaker.original": "Original",
+  "soundbreaker.your_record": "Your recording",
+  "soundbreaker.play_original": "▶ Original",
+  "soundbreaker.record": "● Record",
+  "soundbreaker.recording": "■ Stop (%s)",
+  "soundbreaker.play_record": "▶ My recording",
+  "soundbreaker.done": "Done",
+  "soundbreaker.similarity": "Similarity: %s%%",
+  "soundbreaker.too_low": "Not similar. At least %s%% required",
+  "soundbreaker.success": "Looks close! The block will break.",
+  "soundbreaker.success_chat": "You mimicked the %2$s sound — %1$s%% similarity",
+  "soundbreaker.hint": "R — record · Space — original · Enter — done",
+  "soundbreaker.recording_hint": "Make the sound right now…",
+  "soundbreaker.wait_record": "Record a sound first",
+  "soundbreaker.no_mic": "Microphone unavailable: %s",
+  "soundbreaker.stats": "Attempts: %s · Best: %s%%"
+}
