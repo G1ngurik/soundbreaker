@@ -28,13 +28,13 @@
 gradlew.bat build
 ```
 
-Готовый мод: `build/libs/soundbreaker-1.0.1.jar`.
+Готовый мод: `build/libs/soundbreaker-1.0.2.jar`.
 
 ## Установка
 
 1. Fabric Loader для Minecraft **1.21.1**.
 2. fabric-api (`0.116.18+1.21.1` или совместимый).
-3. Положить `soundbreaker-1.0.1.jar` в `mods`.
+3. Положить `soundbreaker-1.0.2.jar` в `mods`.
 4. Разрешить доступ к микрофону Java/Minecraft в Windows.
 
 ## Настройки (`config/soundbreaker.properties`)
