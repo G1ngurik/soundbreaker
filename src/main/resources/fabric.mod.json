@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "soundbreaker",
+  "version": "${version}",
+  "name": "Sound Breaker",
+  "description": "Break blocks only by imitating their sound into your microphone.",
+  "authors": [
+    "To One"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "ru.toone.soundbreaker.SoundBreakerMod"
+    ],
+    "client": [
+      "ru.toone.soundbreaker.SoundBreakerClient"
+    ]
+  },
+  "mixins": [
+    "soundbreaker.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
