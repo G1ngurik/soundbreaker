@@ -1,0 +1,20 @@
+{
+  "soundbreaker.title": "Сломать: %s",
+  "soundbreaker.subtitle": "Повтори звук блоков в микрофон",
+  "soundbreaker.original": "Оригинал",
+  "soundbreaker.your_record": "Твоя запись",
+  "soundbreaker.play_original": "▶ Оригинал",
+  "soundbreaker.record": "● Записать",
+  "soundbreaker.recording": "■ Стоп (%s)",
+  "soundbreaker.play_record": "▶ Моя запись",
+  "soundbreaker.done": "Готово",
+  "soundbreaker.similarity": "Схожесть: %s%%",
+  "soundbreaker.too_low": "Не похоже. Нужно минимум %s%%",
+  "soundbreaker.success": "Похоже! Блок будет сломан.",
+  "soundbreaker.success_chat": "Звук блока «%2$s» воспроизведён — схожесть %1$s%%",
+  "soundbreaker.hint": "R — записать · Пробел — оригинал · Enter — готово",
+  "soundbreaker.recording_hint": "Говори/издавай звук прямо сейчас…",
+  "soundbreaker.wait_record": "Сначала запиши звук",
+  "soundbreaker.no_mic": "Микрофон недоступен: %s",
+  "soundbreaker.stats": "Попыток: %s · Лучший: %s%%"
+}
